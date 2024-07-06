@@ -3,16 +3,14 @@
 
 import random
 import os
-from hangman import words_list
+from hangman import riddle_list
 from hangman_art import stages, logo
 
 clear = lambda: os.system('cls')
 
-chosen_word=random.choice(words_list)
+chosen_word=random.choice(list(riddle_list.keys()))
 
 print(logo, "\n")
-print(f"pssst, the solution is {chosen_word}")
-
 
 words_length=len(chosen_word)
 display=[]
@@ -24,6 +22,7 @@ lives=6
 
 end_of_game=False
 while not end_of_game:
+    print(f"Hint: {riddle_list[chosen_word]}\n")
     guessed_letter=input("Guess a Letter: ").lower()
     
     clear()
@@ -37,7 +36,7 @@ while not end_of_game:
     
 
     if guessed_letter not in chosen_word:
-        print(f"You guessed the letter {guessed_letter}, that's not in the word. You loose a life.")
+        print(f"You guessed the letter {guessed_letter}, that's not in the word. You loose a life.\n")
         lives-=1
         if lives == 0:
             end_of_game=True
